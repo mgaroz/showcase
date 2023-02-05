@@ -11,6 +11,7 @@ export const load = ({ locals }) => {
       const projects = serializeNonPOJOs(await locals.pb.collection('projects').getFullList(undefined, {
         filter: `user = "${userId}"`
       }))
+      return projects
     } catch (err) {
       console.log('Error: ', err);
       throw error(err.status, err.message)

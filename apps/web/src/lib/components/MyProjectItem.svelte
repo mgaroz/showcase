@@ -23,7 +23,7 @@
 		<p>{project.tagline}</p>
 	</div>
 	<div class="flex items-center justify-end w-full">
-		<a href="/projects/{project.id}/edit" clas="btn btn-outline">Edit Project</a>
+		<a href="/projects/{project.id}/edit" class="btn btn-outline">Edit Project</a>
 		<Modal label={project.id} checked={modalOpen}>
 			<span slot="trigger" class="btn btn-error ml-2">Delete</span>
 			<div slot="heading">
