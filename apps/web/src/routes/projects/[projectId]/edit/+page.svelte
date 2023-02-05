@@ -1,11 +1,12 @@
 <script>
-	import { Input } from '$lib/components';
+	import { Input, TextArea } from '$lib/components';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Trash } from '@steeze-ui/heroicons';
 	import { getImageURL } from '$lib/utils';
 	import { enhance } from '$app/forms';
 
 	export let data;
+	export let form;
 </script>
 
 <div class="flex flex-col w-full h-full p-2">
@@ -18,19 +19,30 @@
 			use:enhance
 		>
 			<h3 class="text-3xl font-bold">Edit {data.project.name}</h3>
-			<Input id="name" label="Project name" value={data.project.name ?? ''} />
-			<Input id="tagline" label="Project tagline" value={data.project.tagline ?? ''} />
-			<Input id="url" label="Project URL" value={data.project.url ?? ''} />
-			<div class="form-control w-full max-w-lg">
-				<label for="description" class="label font-medium pb-1">
-					<span class="label-text">Project description</span>
-				</label>
-				<textarea
-					name="description"
-					class="textarea textarea-bordered h-24 resize-none"
-					value={data.project.description ?? ''}
-				/>
-			</div>
+			<Input
+				id="name"
+				label="Project name"
+				value={form?.data?.name ?? data.project.name}
+				errors={form?.errors?.name}
+			/>
+			<Input
+				id="tagline"
+				label="Project tagline"
+				value={form?.data?.tagline ?? data.project.tagline}
+				errors={form?.errors?.tagline}
+			/>
+			<Input
+				id="url"
+				label="Project URL"
+				value={form?.data?.url ?? data.project.url}
+				errors={form?.errors?.url}
+			/>
+			<TextArea
+				id="description"
+				label="Project description"
+				value={form?.data?.description ?? data.project.description}
+				errors={form?.errors?.description}
+			/>
 			<div class="form-control w-full max-w-lg">
 				<label for="thumbnail" class="label font-medium pb-1">
 					<span class="label-text">Thumbnail</span>
@@ -61,6 +73,15 @@
 					name="thumbnail"
 					id="thumbnail"
 				/>
+				{#if form?.errors?.thumbnail}
+					{#each form?.errors?.thumbnail as error}
+						<label for="thumbnail" class="label py-0 pt-1">
+							<span class="label-text-alt text-error">
+								{error}
+							</span>
+						</label>
+					{/each}
+				{/if}
 			</div>
 			<div class="w-full max-w-lg pt-3">
 				<button type="submit" class="btn btn-primary w-full max-w-lg">Save Changes</button>
