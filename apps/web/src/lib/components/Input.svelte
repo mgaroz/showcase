@@ -25,7 +25,7 @@
 		{value}
 	/>
 	{#if errors}
-		${#each errors as error}
+		{#each errors as error}
 			<label for={id} class="label py-0 pt-1">
 				<span class="label-text-alt text-error">
 					{error}
