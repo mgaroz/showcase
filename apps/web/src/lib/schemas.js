@@ -10,4 +10,17 @@ export const registerUserSchema = z.object({
   email: z.string({ required_error: 'Email is required' }).email({ message: 'Email must be a valid email' }),
   password: z.string({ required_error: 'Password is required.' }).regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, { message: 'Password must be at least 8 characters long & contain at least  one letter, one digit and one special character' }),
   passwordConfirm: z.string({ required_error: 'Confirm Password is required.' }).regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, { message: 'Password must be at least 8 characters long & contain at least  one letter, one digit and one special character' })
+}).superRefine(({ passwordConfirm, password }, ctx) => {
+  if (passwordConfirm !== password) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Passwords do not match',
+      path: ['password']
+    })
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Passwords do not match',
+      path: ['passwordConfirm']
+    })
+  }
 })
