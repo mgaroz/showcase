@@ -38,6 +38,15 @@ export const registerUserSchema = z.object({
   }
 })
 
+const imageTypes = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+  'image/svg+xml',
+  'image/gif',
+]
+
 export const createProjectSchema = z.object({
   name: z
     .string({ required_error: 'Name is required' })
@@ -56,5 +65,25 @@ export const createProjectSchema = z.object({
     .string({ required_error: 'Description is required' })
     .min(1, { message: 'Description is required' })
     .max(512, { message: 'Description cannot exceed 512 characters' })
-    .trim()
+    .trim(),
+  thumbnail: z
+    .instanceof(Blob)
+    .optional()
+    .superRefine((val, ctx) => {
+      if (val) {
+        if (val.size > 5242880) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Thumbnail must be less than 5MB'
+          })
+        }
+        if (!imageTypes.includes(val.type)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Unsupported file type. Supported formats: jpeg, jpg, png, webp, svg, gif'
+          })
+        }
+      }
+    }),
+  user: z.string({ required_error: 'User is required' })
 })
