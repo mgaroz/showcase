@@ -3,6 +3,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Trash } from '@steeze-ui/heroicons';
 	import { getImageURL } from '$lib/utils';
+	import { enhance } from '$app/forms';
 
 	export let data;
 </script>
@@ -14,6 +15,7 @@
 			action="?/updateProject"
 			class="flex flex-col space-y-2 w-full items-center"
 			enctype="multipart/form-data"
+			use:enhance
 		>
 			<h3 class="text-3xl font-bold">Edit {data.project.name}</h3>
 			<Input id="name" label="Project name" value={data.project.name ?? ''} />

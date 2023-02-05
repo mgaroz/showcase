@@ -22,3 +22,18 @@ export const load = ({ locals }) => {
     projects: getUsersProjects(locals.user.id)
   }
 }
+
+export const actions = {
+  deleteProject: async ({ request, locals }) => {
+    const { id } = Object.fromEntries(await request.formData())
+    try {
+      await locals.pb.collection('projects').delete(id)
+    } catch (err) {
+      console.log('Error: ', err);
+      throw error(err.status, err.message)
+    }
+    return {
+      sucess: true
+    }
+  }
+}

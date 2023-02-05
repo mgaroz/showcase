@@ -36,7 +36,7 @@ export const actions = {
       console.log('Error: ', err)
       throw error(err.status, err.message)
     }
-    throw redirect(303, `/projects/${params.projectId}`)
+    throw redirect(303, '/my/projects')
   },
 
   deleteThumbnail: async ({ locals, params }) => {

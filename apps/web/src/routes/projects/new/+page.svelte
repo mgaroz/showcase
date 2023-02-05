@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from '$app/forms';
 	import { Input } from '$lib/components';
 </script>
 
@@ -9,6 +10,7 @@
 			method="POST"
 			class="flex flex-col space-y-2 w-full items-center"
 			enctype="multipart/form-data"
+			use:enhance
 		>
 			<h3 class="text-3xl font-bold">Tells us more about this project</h3>
 			<p class="mt-2 text-lg">We'll need the name, tagline, link and description</p>

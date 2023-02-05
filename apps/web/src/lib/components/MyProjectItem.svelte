@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from '$app/forms';
 	import { Modal } from '$lib/components';
 	import { getImageURL } from '$lib/utils';
 	export let project;
@@ -35,7 +36,7 @@
 			</div>
 			<div slot="actions" class="flex w-full items-center justify-center space-x-2">
 				<label for={project.id} class="btn btn-outline">Cancel</label>
-				<form action="?/deleteProject" method="POST">
+				<form action="?/deleteProject" method="POST" use:enhance>
 					<input type="hidden" name="id" value={project.id} />
 					<button type="submit" class="btn btn-error">Delete</button>
 				</form>
