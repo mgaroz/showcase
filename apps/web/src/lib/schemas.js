@@ -50,12 +50,12 @@ const imageTypes = [
 export const createProjectSchema = z.object({
   name: z
     .string({ required_error: 'Name is required' })
-    .min(1, { message: 'Name is required' })
+    .min(2, { message: 'Name must not be empty and at least 2 characters long' })
     .max(64, { message: 'Name cannot exceed 64 characters' })
     .trim(),
   tagline: z
     .string({ required_error: 'Tagline is required' })
-    .min(1, { message: 'Tagline is required' })
+    .min(2, { message: 'Tagline must not be empty and at least 2 characters long' })
     .max(64, { message: 'Tagline cannot exceed 64 characters' })
     .trim(),
   url: z
@@ -63,7 +63,7 @@ export const createProjectSchema = z.object({
     .url({ message: 'URL must be a valid URL' }),
   description: z
     .string({ required_error: 'Description is required' })
-    .min(1, { message: 'Description is required' })
+    .min(2, { message: 'Description must not be empty and at least 2 characters long' })
     .max(512, { message: 'Description cannot exceed 512 characters' })
     .trim(),
   thumbnail: z
