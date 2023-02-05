@@ -22,12 +22,12 @@
 			<div class="form-control w-full max-w-lg">
 				<label for="description" class="label font-medium pb-1">
 					<span class="label-text">Project description</span>
-					<textarea
-						name="description"
-						class="textarea textarea-bordered h-24 resize-none"
-						value={data.project.description ?? ''}
-					/>
 				</label>
+				<textarea
+					name="description"
+					class="textarea textarea-bordered h-24 resize-none"
+					value={data.project.description ?? ''}
+				/>
 			</div>
 			<div class="form-control w-full max-w-lg">
 				<label for="thumbnail" class="label font-medium pb-1">
@@ -36,7 +36,7 @@
 				{#if data.project.thumbnail}
 					<label for="thumbnail" class="avatar w-20 hover:cursor-pointer">
 						<label for="thumbnail" class="absolute -top-1.5 -right-1.5 hover:cursor-pointer">
-							<button class="btn btn-error btn-sm btn-circle">
+							<button formaction="?/deleteThumbnail" class="btn btn-error btn-sm btn-circle">
 								<Icon src={Trash} class="w-5 h-5 text-white" />
 							</button>
 						</label>
