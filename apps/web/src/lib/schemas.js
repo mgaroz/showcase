@@ -44,7 +44,7 @@ const imageTypes = [
   'image/png',
   'image/webp',
   'image/svg+xml',
-  'image/gif'
+  'image/gif',
 ]
 
 export const createProjectSchema = z.object({
