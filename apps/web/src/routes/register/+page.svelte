@@ -21,21 +21,14 @@
 			value={form?.data?.email}
 			errors={form?.errors?.email}
 		/>
-		<Input
-			type="password"
-			id="password"
-			label="Password"
-			value={form?.data?.password}
-			errors={form?.errors?.password}
-		/>
+		<Input type="password" id="password" label="Password" errors={form?.errors?.password} />
 		<Input
 			type="password"
 			id="passwordConfirm"
 			label="Confirm Password"
-			value={form?.data?.passwordConfirm}
 			errors={form?.errors?.passwordConfirm}
 		/>
-		<div class="w-full max-w-md pt-2">
+		<div class="w-full max-w-lg pt-2">
 			<button class="btn btn-primary w-full">Register</button>
 		</div>
 	</form>
