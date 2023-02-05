@@ -1,6 +1,8 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input } from '$lib/components';
+	import { Input, TextArea } from '$lib/components';
+
+	export let form;
 </script>
 
 <div class="flex flex-col w-full h-full p-2">
@@ -14,15 +16,10 @@
 		>
 			<h3 class="text-3xl font-bold">Tells us more about this project</h3>
 			<p class="mt-2 text-lg">We'll need the name, tagline, link and description</p>
-			<Input id="name" label="Project name" />
-			<Input id="tagline" label="Project tagline" />
-			<Input id="url" label="Project URL" />
-			<div class="form-control w-full max-w-lg">
-				<label for="description" class="label font-medium pb-1">
-					<span class="label-text">Project description</span>
-				</label>
-				<textarea name="description" class="textarea textarea-bordered h-24 resize-none" />
-			</div>
+			<Input id="name" label="Project name" value={form?.data?.name} />
+			<Input id="tagline" label="Project tagline" value={form?.data?.tagline} />
+			<Input id="url" label="Project URL" value={form?.data?.url} />
+			<TextArea id="description" label="Project description" value={form?.data?.description} />
 			<div class="form-control w-full max-w-lg">
 				<label for="thumbnail" class="label font-medium pb-1">
 					<span class="label-text">Thumbnail</span>
