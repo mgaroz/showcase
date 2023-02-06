@@ -103,3 +103,26 @@ export const updateUsernameSchema = z.object({
     .max(24, { message: 'Username must not exceed 24 characters' })
     .regex(/^[a-zA-Z0-9]*$/, { message: 'Username can only contain letters or numbers' })
 })
+
+export const updatePasswordSchema = z.object({
+  oldPassword: z.string({ required_error: 'Old password is required' }),
+  password: z
+    .string({ required_error: 'Password is required.' })
+    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, { message: 'Password must be at least 8 characters long & contain at least one letter, one digit and one special character' }),
+  passwordConfirm: z
+    .string({ required_error: 'Confirm Password is required.' })
+    .regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, { message: 'Password must be at least 8 characters long & contain at least one letter, one digit and one special character' })
+}).superRefine(({ passwordConfirm, password }, ctx) => {
+  if (passwordConfirm !== password) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Passwords do not match',
+      path: ['password']
+    })
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Passwords do not match',
+      path: ['passwordConfirm']
+    })
+  }
+})
