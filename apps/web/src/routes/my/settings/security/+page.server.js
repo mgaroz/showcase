@@ -2,6 +2,12 @@ import { error, redirect, fail } from '@sveltejs/kit'
 import { validateData } from '$lib/utils'
 import { updatePasswordSchema } from '$lib/schemas'
 
+export const load = ({ locals }) => {
+  if (!locals.pb.authStore.isValid) {
+    throw redirect(303, '/login')
+  }
+}
+
 export const actions = {
   updatePassword: async ({ request, locals }) => {
     const { formData, errors } = await validateData(await request.formData(), updatePasswordSchema)

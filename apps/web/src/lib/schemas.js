@@ -126,3 +126,31 @@ export const updatePasswordSchema = z.object({
     })
   }
 })
+
+export const updateProfileSchema = z.object({
+  name: z
+    .string({ required_error: 'Name is required' })
+    .regex(/^[a-zA-Z\s]*$/, { message: 'Name can only contain letters and spaces' })
+    .min(2, { message: 'Name must not be empty and at least 2 characters long' })
+    .max(64, { message: 'Name must be less than 64 characters long' })
+    .trim(),
+  avatar: z
+    .instanceof(Blob)
+    .optional()
+    .superRefine((val, ctx) => {
+      if (val) {
+        if (val.size > 5242880) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Avatar must be less than 5MB'
+          })
+        }
+        if (!imageTypes.includes(val.type)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Unsupported file type. Supported formats: jpeg, jpg, png, webp, svg, gif'
+          })
+        }
+      }
+    })
+})
