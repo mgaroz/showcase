@@ -4,7 +4,7 @@ import { updateEmailSchema, updateUsernameSchema } from '$lib/schemas'
 
 export const actions = {
   updateEmail: async ({ request, locals }) => {
-    const { formData, errors } = await validateData(await request(formData()), updateEmailSchema)
+    const { formData, errors } = await validateData(await request.formData(), updateEmailSchema)
 
     if (errors) {
       return fail(400, {
@@ -25,7 +25,7 @@ export const actions = {
   },
 
   updateUsername: async ({ request, locals }) => {
-    const { formData, errors } = await validateData(await request(formData()), updateUsernameSchema)
+    const { formData, errors } = await validateData(await request.formData(), updateUsernameSchema)
 
     if (errors) {
       return fail(400, {
