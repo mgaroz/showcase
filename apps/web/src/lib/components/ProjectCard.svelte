@@ -8,7 +8,7 @@
 		<img
 			src={project.thumbnail
 				? getImageURL(project.collectionId, project.id, project.thumbnail)
-				: `https://via.placeholder.com/500/4506CB/FFFFFF/?text=${project.name}`}
+				: `https://via.placeholder.com/300/4506CB/FFFFFF/?text=${project.name}`}
 			alt="project thumbnail"
 		/>
 	</figure>
