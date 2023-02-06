@@ -66,6 +66,7 @@
 					required={true}
 					value={form?.data?.email}
 					disabled={loading}
+					errors={form?.errors?.email}
 				/>
 				<button type="submit" class="btn btn-primary w-full" disabled={loading}
 					>Change my Email</button
@@ -93,6 +94,7 @@
 					required={true}
 					value={form?.data?.username}
 					disabled={loading}
+					errors={form?.errors?.username}
 				/>
 				<button type="submit" class="btn btn-primary w-full" disabled={loading}
 					>Change my Username</button
