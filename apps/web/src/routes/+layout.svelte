@@ -5,6 +5,12 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>Project Manager</title>
+	<meta name="robots" content="index nofollow" />
+	<meta name="description" content="Simple project management app, still in the works." />
+</svelte:head>
+
 <Toaster />
 <div class="min-h-full">
 	<nav class="navbar bg-base-100 border-b">
