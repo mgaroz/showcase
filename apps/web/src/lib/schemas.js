@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { Blob } from 'buffer'
+import { Blob } from 'node:buffer'
 
 export const loginUserSchema = z.object({
   email: z
