@@ -2,7 +2,7 @@ import PocketBase from 'pocketbase'
 import { serializeNonPOJOs } from '$lib/utils'
 
 export const handle = async ({ event, resolve }) => {
-  event.locals.pb = new PocketBase('http://192.168.0.202:8090')
+  event.locals.pb = new PocketBase('https://better-exabyte.pockethost.io')
   event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '')
 
   try {

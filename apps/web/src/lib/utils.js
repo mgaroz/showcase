@@ -10,7 +10,7 @@ export const generateUsername = name => {
 }
 
 export const getImageURL = (collectionId, recordId, fileName, size = '0x0') => {
-  return `http://192.168.0.202:8090/api/files/${collectionId}/${recordId}/${fileName}?thumb=${size}`
+  return `https://better-exabyte.pockethost.io/api/files/${collectionId}/${recordId}/${fileName}?thumb=${size}`
 }
 
 export const validateData = async (formData, schema) => {
